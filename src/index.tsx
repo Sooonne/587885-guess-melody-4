@@ -12,4 +12,4 @@ ReactDOM.render(
     <App errorsCount = {Settings.ERRORS_COUNT} />, root
 );
 
-// i need some changes for commit
+
