@@ -1,3 +1,5 @@
+const AVATAR_URL = '111'
+
 export default [
   {
     type: `genre`,

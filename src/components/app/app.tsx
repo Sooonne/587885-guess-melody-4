@@ -20,7 +20,7 @@ export const App: React.FC <AppProps> = ({errorsCount, questions}) => {
         <WelcomeScreen
           errorsCount={errorsCount}
           onWelcomeButtonClick={() => {
-            useState(0);
+            setStep(0);
           }}
         />
       );
@@ -34,7 +34,7 @@ export const App: React.FC <AppProps> = ({errorsCount, questions}) => {
             <ArtistQuestionScreen
               question={question}
               onAnswer={() => {
-                useState(step + 1);
+                setStep(step + 1);
               }}
             />
           );
@@ -43,7 +43,7 @@ export const App: React.FC <AppProps> = ({errorsCount, questions}) => {
             <GenreQuestionScreen
               question={question}
               onAnswer={() => {
-                useState(step + 1)
+                setStep(step + 1)
               }}
             />
            );

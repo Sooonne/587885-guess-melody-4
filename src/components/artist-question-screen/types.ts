@@ -1,17 +1,7 @@
 import {GameType} from "../../const";
+import { ArtistQuestion } from "../app/types";
 
 export interface ArtistQuestionScreenProps {
   onAnswer: Function,
-  question: {
-    answers: Array<{
-      artist: string,
-      picture: string,
-    }>,
-    song: {
-      artist: string,
-      src: string,
-    },
-    type: GameType,
-
-  }
+  question: ArtistQuestion
 };

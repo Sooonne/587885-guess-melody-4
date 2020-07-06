@@ -1,13 +1,7 @@
 import {GameType} from "../../const";
+import { GenreQuestion } from "../app/types";
 
 export interface GenreQuestionScreenProps {
   onAnswer: Function,
-   question: 
-    {answers: Array<{
-      src: string,
-      genre: string,
-    }>,
-    genre: string,
-    type: GameType,
-  }
+  question: GenreQuestion
 };
