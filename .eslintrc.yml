@@ -31,7 +31,5 @@ plugins: ['react', '@typescript-eslint', 'prettier']
 settings:
   react:
     version: '16'
-    pragma: React,
-    version: detect
 
-parser: [@typescript-eslint/parser]
+parser: '@typescript-eslint/parser'

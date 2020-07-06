@@ -1,7 +1,7 @@
 import React from "react";
 import {AppProps} from "./types"
 
-export const WelcomeScreen: React.FC <AppProps> = ({errorsCount}) => {
+export const WelcomeScreen: React.FC <AppProps> = ({errorsCount, onWelcomeButtonClick}) => {
   // eslint-disable-next-line react/prop-types
   // const {errorsCount} = props;
 
@@ -10,7 +10,7 @@ export const WelcomeScreen: React.FC <AppProps> = ({errorsCount}) => {
       <div className="welcome__logo">
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"/>
       </div>
-      <button className="welcome__button"><span className="visually-hidden">Начать игру</span></button>
+      <button onClick={onWelcomeButtonClick} className="welcome__button"><span className="visually-hidden">Начать игру</span></button>
       <h2 className="welcome__rules-title">Правила игры</h2>
       <p className="welcome__text">Правила просты:</p>
       <ul className="welcome__rules-list">
