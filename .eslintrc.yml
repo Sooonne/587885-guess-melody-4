@@ -32,4 +32,4 @@ settings:
   react:
     version: '16'
 
-parser: '@typescript-eslint/parser'
+parser: @typescript-eslint/parser
