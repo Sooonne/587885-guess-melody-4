@@ -6,12 +6,8 @@ env:
   jest: true
 
 extends: ['htmlacademy/es6',
-          'plugin:react/recommended',
-          'eslint:recommended',
-          'plugin:react/recommended',
-          'plugin:@typescript-eslint/recommended',
           'prettier/@typescript-eslint',
-          'plugin:prettier/recommended'
+          'plugin:react/recommended',
           ]
 
 parserOptions:
@@ -23,7 +19,8 @@ parserOptions:
 rules:
   prettier/prettier:
     ['error',
-    'singleQuote': true
+    'singleQuote': true,
+    'space-in-brackets': 'never'
     ]
 
 plugins: ['react', '@typescript-eslint', 'prettier']
@@ -32,4 +29,4 @@ settings:
   react:
     version: '16'
 
-parser: @typescript-eslint/parser
+parser: '@typescript-eslint/parser'

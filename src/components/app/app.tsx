@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-import {WelcomeScreen} from "../welcome-screen/welcome-screen";
-import {AppProps} from "./types";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
-import {ArtistQuestionScreen} from "../artist-question-screen/artist-question-screen";
-import {GenreQuestionScreen} from "../genre-question-screen/genre-question-screen";
-import {GameType} from "../../const";
+import React, {useState} from 'react';
+import {WelcomeScreen} from '../welcome-screen/welcome-screen';
+import {AppProps} from './types';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {ArtistQuestionScreen} from '../artist-question-screen/artist-question-screen';
+import { GenreQuestionScreen } from '../genre-question-screen/genre-question-screen';
+import { GameType } from '../../const';
 
-export const App: React.FC <AppProps> = ({errorsCount, questions}) => {
+export const App: React.FC<AppProps> = ({ errorsCount, questions }) => {
   // eslint-disable-next-line react/prop-types
   // const {errorsCount} = props;
-  
+
   const [step, setStep] = useState(-1);
   const renderGameScreen = () => {
-    
     const question = questions[step];
-    
+
     if (step === -1 || step >= questions.length) {
       return (
         <WelcomeScreen
@@ -25,7 +24,6 @@ export const App: React.FC <AppProps> = ({errorsCount, questions}) => {
         />
       );
     }
-
 
     if (question) {
       switch (question.type) {
@@ -43,36 +41,28 @@ export const App: React.FC <AppProps> = ({errorsCount, questions}) => {
             <GenreQuestionScreen
               question={question}
               onAnswer={() => {
-                setStep(step + 1)
+                setStep(step + 1);
               }}
             />
-           );
-       }
-     }
-     return null;
-
-  }
+          );
+      }
+    }
+    return null;
+  };
 
   return (
     <BrowserRouter>
-    <Switch>
-      <Route exact path="/">
-      {renderGameScreen()}        
-      </Route>
-      <Route exact path="/artist">
-        <ArtistQuestionScreen
-          question={questions[1]}
-          onAnswer={() => {}}
-        />
-      </Route>
-      <Route exact path="/genre">
-        <GenreQuestionScreen
-          question={questions[0]}
-          onAnswer={() => {}}
-        />
-      </Route>
-    </Switch>
-  </BrowserRouter>
-  ); 
+      <Switch>
+        <Route exact path="/">
+          {renderGameScreen()}
+        </Route>
+        <Route exact path="/artist">
+          <ArtistQuestionScreen question={questions[1]} onAnswer={() => {}} />
+        </Route>
+        <Route exact path="/genre">
+          <GenreQuestionScreen question={questions[0]} onAnswer={() => {}} />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
 };
-
