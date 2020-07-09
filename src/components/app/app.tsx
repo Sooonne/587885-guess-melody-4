@@ -3,10 +3,10 @@ import {WelcomeScreen} from '../welcome-screen/welcome-screen';
 import {AppProps} from './types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {ArtistQuestionScreen} from '../artist-question-screen/artist-question-screen';
-import { GenreQuestionScreen } from '../genre-question-screen/genre-question-screen';
-import { GameType } from '../../const';
+import {GenreQuestionScreen} from '../genre-question-screen/genre-question-screen';
+import {GameType} from '../../const';
 
-export const App: React.FC<AppProps> = ({ errorsCount, questions }) => {
+export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
   // eslint-disable-next-line react/prop-types
   // const {errorsCount} = props;
 
