@@ -2,17 +2,13 @@ env:
   es6: true
   browser: true
   commonjs: true
-  jasmine: true
   jest: true
 
-extends: ['htmlacademy/es6',
-          'plugin:react/recommended',
-          'eslint:recommended',
-          'plugin:react/recommended',
-          'plugin:@typescript-eslint/recommended',
-          'prettier/@typescript-eslint',
-          'plugin:prettier/recommended'
-          ]
+extends: [
+  'htmlacademy/es6',
+  'plugin:react/recommended',
+  'plugin:@typescript-eslint/recommended',
+  ]
 
 parserOptions:
   ecmaFeatures:
@@ -20,16 +16,16 @@ parserOptions:
   ecmaVersion: 6
   sourceType: module
 
-rules:
-  prettier/prettier:
-    ['error',
-    'singleQuote': true
-    ]
-
-plugins: ['react', '@typescript-eslint', 'prettier']
+plugins: ['react', '@typescript-eslint']
 
 settings:
   react:
     version: '16'
 
 parser: '@typescript-eslint/parser'
+
+rules: {
+  '@typescript-eslint/no-empty-function': 'off',
+  '@typescript-eslint/explicit-function-return-type': 'off',
+  'react/prop-types': 'off'
+ }
