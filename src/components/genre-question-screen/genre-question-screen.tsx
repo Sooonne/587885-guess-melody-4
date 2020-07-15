@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {GenreQuestionScreenProps} from "./types";
-import AudioPlayer from "../audio-player/audio-player.jsx";
+import {AudioPlayer} from "../audio-player/audio-player";
 
 export const GenreQuestionScreen: React.FC <GenreQuestionScreenProps> = ({onAnswer, question}) => {
   

@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, createRef} from "react";
 import {AudioPlayerProps} from "./types";
 
 export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
   const [playing, setPlaying] = useState(isPlaying);
+  const audioRef = createRef();
 
   useEffect(() => {
-    let audio = new Audio(src);
+    let audio = audioRef.current;
+    audio.src = src;
 
     audio.oncanplaythrough = () => {
       setLoading(false);
@@ -25,13 +27,19 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
       setProgress(audio.currentTime);
     }
 
+    if (playing) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+
     return function cleanup() {
       audio.oncanplaythrough = null;
       audio.onplay = null;
       audio.onpause = null;
       audio.ontimeupdate = null;
       audio.src = ``;
-      audio = null;
+      // audio = null;
     }
   });
 
@@ -44,7 +52,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
         onClick={() => setPlaying(!playing)}
       />
       <div className="track__status">
-        <audio />
+        <audio
+          ref={audioRef}
+          />
       </div>
     </React.Fragment>
   );
