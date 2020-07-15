@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {ArtistQuestionScreenProps} from "./types";
+import  {AudioPlayer} from "../audio-player/audio-player"
 
 export const ArtistQuestionScreen: React.FC <ArtistQuestionScreenProps> = ({onAnswer, question}) => {
   const {answers, song,} = question;
@@ -8,12 +9,10 @@ export const ArtistQuestionScreen: React.FC <ArtistQuestionScreenProps> = ({onAn
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
           <div className="track">
-            <button className="track__button track__button--play" type="button" />
-            <div className="track__status">
-              <audio
-                src={song.src}
-              />
-            </div>
+          <AudioPlayer
+             isPlaying = {true}
+             src = {song.src}
+          />
           </div>
         </div>
 
