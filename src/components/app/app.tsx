@@ -9,8 +9,6 @@ import {GameScreen} from '../game-screen/game-screen';
 
 
 export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
-  // eslint-disable-next-line react/prop-types
-  // const {errorsCount} = props;
 
   const [step, setStep] = useState(-1);
   const renderGameScreen = () => {

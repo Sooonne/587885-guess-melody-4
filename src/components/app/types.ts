@@ -1,25 +1,29 @@
-import { GameType } from "../../const";
+import {GameType} from "../../const";
 
 export interface ArtistQuestion {
   answers: Array<{
-    artist: string,
-    picture: string,
-  }>,
+    artist: string;
+    picture: string;
+  }>;
   song: {
-    artist: string,
-    src: string,
-  },
-  type: GameType.ARTIST,
+    artist: string;
+    src: string;
+  };
+  type: GameType.ARTIST;
 }
 
 export interface GenreQuestion {
   answers: Array<{
-    src: string,
-    genre: string,
-  }>,
-  genre: string,
-  type: GameType.GENRE,
+    src: string;
+    genre: string;
+  }>;
+  genre: string;
+  type: GameType.GENRE;
 }
 
-export interface AppProps {errorsCount: number, onWelcomeButtonClick: Function, questions: [GenreQuestion, ArtistQuestion]};
+export interface AppProps {
+  errorsCount: number;
+  onWelcomeButtonClick: Function;
+  questions: (GenreQuestion | ArtistQuestion)[];
+}
 

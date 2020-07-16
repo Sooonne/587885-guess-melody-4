@@ -1,11 +1,11 @@
-import React, {useState, useEffect, createRef} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {AudioPlayerProps} from "./types";
 
-export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
+export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src, togglePlaying}) => {
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [playing, setPlaying] = useState(isPlaying);
-  const audioRef = createRef<HTMLAudioElement>();
+  // const [playing, setPlaying] = useState(isPlaying);
+  const audioRef = useRef<HTMLAudioElement>();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -15,23 +15,17 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
       setLoading(false);
     };
 
-    audio.onplay = () => {
-      setPlaying(true);
-    };
+    // audio.onplay = () => {
+    //   setPlaying(true);
+    // };
 
-    audio.onpause = () => {
-      setPlaying(false);
-    };
-   
+    // audio.onpause = () => {
+    //   setPlaying(false);
+    // };
+
     audio.ontimeupdate = () => {
       setProgress(audio.currentTime);
     };
-
-    if (playing) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
 
     return function cleanup() {
       audio.oncanplaythrough = null;
@@ -43,13 +37,24 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
     };
   }, [audioRef]);
 
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (isPlaying) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }, [audioRef, isPlaying]);
+
   return (
     <React.Fragment>
       <button
-        className={`track__button track__button--${playing ? `pause` : `play`}`}
+        className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
         type="button"
         disabled={loading}
-        onClick={() => setPlaying(!playing)}
+        onClick={() => togglePlaying()}
+
       />
       <div className="track__status">
         <audio

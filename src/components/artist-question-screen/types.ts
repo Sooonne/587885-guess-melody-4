@@ -1,7 +1,7 @@
 import {GameType} from "../../const";
-import { ArtistQuestion } from "../app/types";
+import {ArtistQuestion} from "../app/types";
 
 export interface ArtistQuestionScreenProps {
-  onAnswer: Function,
-  question: ArtistQuestion
-};
+  onAnswer: Function;
+  question: ArtistQuestion;
+}

@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import {ArtistQuestionScreenProps} from "./types";
 import {AudioPlayer} from "../audio-player/audio-player";
 
 export const ArtistQuestionScreen: React.FC <ArtistQuestionScreenProps> = ({onAnswer, question}) => {
   const {answers, song} = question;
+  const [playing, setPlaying] = useState(true);
   return (
     <section className="game__screen">
       <h2 className="game__title">Кто исполняет эту песню?</h2>
       <div className="game__track">
         <div className="track">
           <AudioPlayer
-            isPlaying = {true}
+            isPlaying = {playing}
             src = {song.src}
+            togglePlaying = {() => setPlaying(!playing)}
           />
         </div>
       </div>
