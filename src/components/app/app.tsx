@@ -5,6 +5,8 @@ import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {ArtistQuestionScreen} from '../artist-question-screen/artist-question-screen';
 import {GenreQuestionScreen} from '../genre-question-screen/genre-question-screen';
 import {GameType} from '../../const';
+import {GameScreen} from '../game-screen/game-screen'
+
 
 export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
   // eslint-disable-next-line react/prop-types
@@ -29,21 +31,31 @@ export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <ArtistQuestionScreen
-              question={question}
-              onAnswer={() => {
-                setStep(step + 1);
-              }}
-            />
+            <GameScreen
+              type={question.type}
+            >
+              
+              <ArtistQuestionScreen
+                question={question}
+                onAnswer={() => {
+                  setStep(step + 1);
+                }}
+              />
+            </GameScreen>
           );
         case GameType.GENRE:
           return (
+            <GameScreen
+            type={question.type}
+            >
+
             <GenreQuestionScreen
               question={question}
               onAnswer={() => {
                 setStep(step + 1);
               }}
             />
+            </GameScreen>
           );
       }
     }

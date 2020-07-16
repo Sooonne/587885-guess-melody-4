@@ -1,29 +1,13 @@
 import React, { useState } from "react";
 import {GenreQuestionScreenProps} from "./types";
+import {AudioPlayer} from "../audio-player/audio-player";
 
 export const GenreQuestionScreen: React.FC <GenreQuestionScreenProps> = ({onAnswer, question}) => {
   
   const [userAnswers, setUserAnswers] = useState([false, false, false, false]);
   const {answers, genre,} = question;
   return (
-    <section className="game game--genre">
-      <header className="game__header">
-        <a className="game__back" href="#">
-          <span className="visually-hidden">Сыграть ещё раз</span>
-          <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию"/>
-        </a>
 
-        <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
-          <circle className="timer__line" cx="390" cy="390" r="370"
-            style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}}/>
-        </svg>
-
-        <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-        </div>
-      </header>
 
       <section className="game__screen">
         <h2 className="game__title">Выберите {genre} треки</h2>
@@ -37,12 +21,10 @@ export const GenreQuestionScreen: React.FC <GenreQuestionScreenProps> = ({onAnsw
 
           {answers.map((answer, i) => (
             <div key={`${i}-${answer.src}`} className="track">
-              <button className="track__button track__button--play" type="button"></button> 
-              <div className="track__status">
-                <audio
-                  src={answer.src}
-                />
-              </div>
+              <AudioPlayer
+                 isPlaying={i === 0}
+                 src={answer.src}
+              />
               <div className="game__answer">
                 <input className="game__input visually-hidden" type="checkbox" name="answer" 
                 value={`answer-${i}`} 
@@ -62,6 +44,6 @@ export const GenreQuestionScreen: React.FC <GenreQuestionScreenProps> = ({onAnsw
             <button className="game__submit button" type="submit">Ответить</button>
         </form>
       </section>
-    </section>
+
   );
 };
