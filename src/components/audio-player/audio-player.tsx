@@ -5,10 +5,10 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
   const [playing, setPlaying] = useState(isPlaying);
-  const audioRef = createRef();
+  const audioRef = createRef<HTMLAudioElement>();
 
   useEffect(() => {
-    let audio = audioRef.current;
+    const audio = audioRef.current;
     audio.src = src;
 
     audio.oncanplaythrough = () => {
@@ -22,10 +22,10 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
     audio.onpause = () => {
       setPlaying(false);
     };
-    
+   
     audio.ontimeupdate = () => {
       setProgress(audio.currentTime);
-    }
+    };
 
     if (playing) {
       audio.play();
@@ -40,8 +40,8 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
       audio.ontimeupdate = null;
       audio.src = ``;
       // audio = null;
-    }
-  });
+    };
+  }, [audioRef]);
 
   return (
     <React.Fragment>
@@ -54,7 +54,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({isPlaying, src}) => {
       <div className="track__status">
         <audio
           ref={audioRef}
-          />
+        />
       </div>
     </React.Fragment>
   );
