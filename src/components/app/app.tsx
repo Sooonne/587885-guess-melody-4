@@ -5,12 +5,10 @@ import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {ArtistQuestionScreen} from '../artist-question-screen/artist-question-screen';
 import {GenreQuestionScreen} from '../genre-question-screen/genre-question-screen';
 import {GameType} from '../../const';
-import {GameScreen} from '../game-screen/game-screen'
+import {GameScreen} from '../game-screen/game-screen';
 
 
 export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
-  // eslint-disable-next-line react/prop-types
-  // const {errorsCount} = props;
 
   const [step, setStep] = useState(-1);
   const renderGameScreen = () => {
@@ -34,7 +32,7 @@ export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
             <GameScreen
               type={question.type}
             >
-              
+
               <ArtistQuestionScreen
                 question={question}
                 onAnswer={() => {
@@ -46,15 +44,15 @@ export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
         case GameType.GENRE:
           return (
             <GameScreen
-            type={question.type}
+              type={question.type}
             >
 
-            <GenreQuestionScreen
-              question={question}
-              onAnswer={() => {
-                setStep(step + 1);
-              }}
-            />
+              <GenreQuestionScreen
+                question={question}
+                onAnswer={() => {
+                  setStep(step + 1);
+                }}
+              />
             </GameScreen>
           );
       }

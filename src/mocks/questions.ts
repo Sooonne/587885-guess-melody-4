@@ -1,4 +1,4 @@
-const AVATAR_URL = `111`;
+const AVATAR_URL = `https://api.adorable.io/avatars/128`;
 
 export default [
   {

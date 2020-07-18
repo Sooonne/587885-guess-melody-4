@@ -10,9 +10,9 @@ const Settings = {
 const root = document.querySelector(`#root`);
 
 ReactDOM.render(
-    <App 
-    errorsCount = {Settings.ERRORS_COUNT} 
-    questions = {questions}
+    <App
+      errorsCount = {Settings.ERRORS_COUNT}
+      questions = {questions}
     />, root
 );
 

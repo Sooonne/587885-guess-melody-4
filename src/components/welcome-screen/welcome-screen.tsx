@@ -1,5 +1,5 @@
 import React from "react";
-import {AppProps} from "./types"
+import {AppProps} from "./types";
 
 export const WelcomeScreen: React.FC <AppProps> = ({errorsCount, onWelcomeButtonClick}) => {
   // eslint-disable-next-line react/prop-types
