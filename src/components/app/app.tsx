@@ -2,25 +2,28 @@ import React, {useState} from 'react';
 import {WelcomeScreen} from '../welcome-screen/welcome-screen';
 import {AppProps} from './types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer";
 import {ArtistQuestionScreen} from '../artist-question-screen/artist-question-screen';
 import {GenreQuestionScreen} from '../genre-question-screen/genre-question-screen';
 import {GameType} from '../../const';
 import {GameScreen} from '../game-screen/game-screen';
 
 
-export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
+const App: React.FC<any> = ({maxMistakes, questions, onUserAnswer, onWelcomeButtonClick, step}) => {
 
-  const [step, setStep] = useState(-1);
+  // const [step, setStep] = useState(-1);
   const renderGameScreen = () => {
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
       return (
         <WelcomeScreen
-          errorsCount={errorsCount}
-          onWelcomeButtonClick={() => {
-            setStep(0);
-          }}
+          errorsCount={maxMistakes}
+          // onWelcomeButtonClick={() => {
+          //   setStep(0);
+          // }}
+          onWelcomeButtonClick={onWelcomeButtonClick}
         />
       );
     }
@@ -35,9 +38,10 @@ export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
 
               <ArtistQuestionScreen
                 question={question}
-                onAnswer={() => {
-                  setStep(step + 1);
-                }}
+                // onAnswer={() => {
+                //   setStep(step + 1);
+                // }}
+                onAnswer={onUserAnswer}
               />
             </GameScreen>
           );
@@ -49,9 +53,10 @@ export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
 
               <GenreQuestionScreen
                 question={question}
-                onAnswer={() => {
-                  setStep(step + 1);
-                }}
+                // onAnswer={() => {
+                //   setStep(step + 1);
+                // }}
+                onAnswer={onUserAnswer}
               />
             </GameScreen>
           );
@@ -76,3 +81,25 @@ export const App: React.FC<AppProps> = ({errorsCount, questions}) => {
     </BrowserRouter>
   );
 };
+
+const mapStateToProps = (state: { step: number; maxMistakes: number; questions: any }) => ({
+  step: state.step,
+  maxMistakes: state.maxMistakes,
+  questions: state.questions,
+});
+
+const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: number; }) => void) => ({
+  onWelcomeButtonClick() {
+    dispatch(ActionCreator.incrementStep());
+  },
+  onUserAnswer(question: {
+      type?: any; song?: any; answers?: { [x: string]: { genre: any; }; }; genre?: any; // onWelcomeButtonClick={() => {
+    }, answer: any[]) {
+    dispatch(ActionCreator.incrementMistake(question, answer));
+    dispatch(ActionCreator.incrementStep());
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+

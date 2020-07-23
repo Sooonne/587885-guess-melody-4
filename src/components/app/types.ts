@@ -22,8 +22,10 @@ export interface GenreQuestion {
 }
 
 export interface AppProps {
-  errorsCount: number;
-  onWelcomeButtonClick: Function;
-  questions: (GenreQuestion | ArtistQuestion)[];
+  // maxMistakes: number;
+  // onWelcomeButtonClick: Function;
+  // // questions: (GenreQuestion | ArtistQuestion)[];
+  // onUserAnswer: Function;
+  // step: number;
 }
 
